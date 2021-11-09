@@ -1,0 +1,11 @@
+namespace epam.contest.stock;
+
+table Stock {
+    name:string;
+    price:string;
+    amount:short;
+    description:string;
+    status:bool;
+}
+
+root_type Stock;
