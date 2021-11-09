@@ -1,5 +1,5 @@
 ## Load test with Yandex tank contest
-### version 0.0.2
+### version 0.0.3
 
 ### It's a simple example, I highly recommend refactoring this example for using in production aria.
 
