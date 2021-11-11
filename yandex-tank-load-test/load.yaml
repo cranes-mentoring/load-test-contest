@@ -12,6 +12,8 @@ overload:
   enabled: true
   package: yandextank.plugins.DataUploader
   token_file: "token.txt" 
+telegraf:
+  enabled: false  
 autostop:
   autostop:
     - time(1s,10s) # if request average > 1s
