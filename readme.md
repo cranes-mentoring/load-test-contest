@@ -56,6 +56,8 @@ Use as standalone [install with pip3](https://yandextank.readthedocs.io/en/lates
 Yaml settings:
 [here](https://yandextank.readthedocs.io/en/latest/core_and_modules.html#load-generators)  
 
+Jmeter
+[here](https://gist.github.com/sameoldmadness/9abeef4c2125bc760ba2f09ee1150330)  
 
 ### `ammo-generator`  
 Python script which can create ammo (json or flatbuffers) for tank. Used simple generator, like here: [ammo generator example Yandex Tank docs](https://yandextank.readthedocs.io/en/latest/ammo_generators.html)

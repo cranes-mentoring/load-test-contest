@@ -1,0 +1,53 @@
+2021-11-11 08:51:50,963 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [Test worker] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.epam.contest.flatbufferdocumentservice.FlatbufferDocumentServiceApplicationTests], using SpringBootContextLoader
+2021-11-11 08:51:50,973 INFO org.springframework.test.context.support.AbstractContextLoader [Test worker] Could not detect default resource locations for test class [com.epam.contest.flatbufferdocumentservice.FlatbufferDocumentServiceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-11-11 08:51:51,127 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [Test worker] Found @SpringBootConfiguration com.epam.contest.flatbufferdocumentservice.FlatbufferDocumentServiceApplication for test class com.epam.contest.flatbufferdocumentservice.FlatbufferDocumentServiceApplicationTests
+2021-11-11 08:51:51,232 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [Test worker] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [com.ninjasquad.springmockk.MockkTestExecutionListener, com.ninjasquad.springmockk.ClearMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-11-11 08:51:51,960 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [Test worker] Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12010fd1, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@7c84195, com.ninjasquad.springmockk.MockkTestExecutionListener@552ed807, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3971f0fe, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@23940f86, org.springframework.test.context.support.DirtiesContextTestExecutionListener@66153688, org.springframework.test.context.transaction.TransactionalTestExecutionListener@455824ad, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7318daf8, org.springframework.test.context.event.EventPublishingTestExecutionListener@70f31322, com.ninjasquad.springmockk.ClearMocksTestExecutionListener@3f1ddac2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3be4fcc0, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@e1e2e5e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@661c46bc, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@37864b77, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2b98b3bb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@540b0448]
+2021-11-11 08:51:52,645 INFO org.springframework.boot.StartupInfoLogger [Test worker] Starting FlatbufferDocumentServiceApplicationTests using Java 16.0.2 on EPRUMOSW0413 with PID 82427 (started by Ilia_Ivankin in /Users/Ilia_Ivankin/Documents/git/contests/load-test-contest/flatbuffer-document-service)
+2021-11-11 08:51:52,669 DEBUG org.springframework.boot.StartupInfoLogger [Test worker] Running with Spring Boot v2.5.6, Spring v5.3.12
+2021-11-11 08:51:52,673 INFO org.springframework.boot.SpringApplication [Test worker] No active profile set, falling back to default profiles: default
+2021-11-11 08:51:53,591 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [Test worker] Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2021-11-11 08:51:53,625 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [Test worker] Finished Spring Data repository scanning in 25 ms. Found 0 Reactive MongoDB repository interfaces.
+2021-11-11 08:51:54,439 INFO com.mongodb.diagnostics.logging.SLF4JLogger [Test worker] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2021-11-11 08:51:54,535 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='618caf7ac2d95907a0c8b688', description='null'}-localhost:27017] Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:508)
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:476)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:578)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:571)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:550)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:491)
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:616)
+	at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:609)
+	at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:117)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:321)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:337)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:707)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/[0:0:0:0:0:0:0:1]:27017
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:669)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:944)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:707)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+2021-11-11 08:51:55,246 DEBUG org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping [Test worker] 1 mappings in 'requestMappingHandlerMapping'
+2021-11-11 08:51:55,274 DEBUG org.springframework.web.reactive.handler.SimpleUrlHandlerMapping [Test worker] Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-11-11 08:51:55,419 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [Test worker] Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-11-11 08:51:55,519 DEBUG org.springframework.web.reactive.result.method.annotation.ControllerMethodResolver [Test worker] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 @ExceptionHandler
+2021-11-11 08:51:55,556 DEBUG org.springframework.web.server.adapter.HttpWebHandlerAdapter [Test worker] enableLoggingRequestDetails='false': form data and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-11-11 08:51:55,674 INFO org.springframework.boot.StartupInfoLogger [Test worker] Started FlatbufferDocumentServiceApplicationTests in 3.565 seconds (JVM running for 7.605)

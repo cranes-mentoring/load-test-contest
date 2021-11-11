@@ -62,3 +62,15 @@ ktlint {
 tasks.named("check") {
     dependsOn(":ktlintCheck")
 }
+
+jib {
+    to {
+        tags = setOf("${project.version}", "latest")
+    }
+    container {
+        jvmFlags = listOf(
+            "-Xms256m",
+            "-Xmx1024m"
+        )
+    }
+}

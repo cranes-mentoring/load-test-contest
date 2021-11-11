@@ -58,3 +58,15 @@ ktlint {
         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
     }
 }
+
+jib {
+    to {
+        tags = setOf("${project.version}", "latest")
+    }
+    container {
+        jvmFlags = listOf(
+            "-Xms256m",
+            "-Xmx1024m"
+        )
+    }
+}
