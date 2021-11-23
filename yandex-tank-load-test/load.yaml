@@ -8,10 +8,16 @@ phantom:
   writelog: all
   ssl: false
   connection_test: true
+  
+  # headers:
+  #   - "[Host: www.target.example.com]"
+  #   - "[Connection: close]"
+  # uris:
+  #   - "/v2/stock/all" 
 overload:
   enabled: true
   package: yandextank.plugins.DataUploader
-  token_file: "token.txt" 
+  token_file: "/token.txt" 
 telegraf:
   enabled: false  
 autostop:
