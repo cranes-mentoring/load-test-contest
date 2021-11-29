@@ -13,7 +13,7 @@ interface StockService {
 @Service
 internal class StockServiceImpl(
     private val mongoOperations: ReactiveMongoOperations
-): StockService {
+) : StockService {
 
     @Transactional
     override fun save(binaryDoc: Stock): Mono<Boolean> =

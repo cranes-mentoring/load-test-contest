@@ -5,7 +5,7 @@ import java.io.File
 import java.math.BigDecimal
 import java.nio.ByteBuffer
 
-val newStock = Stock(null, "TEMP", BigDecimal.ZERO, 1,"descr", true)
+val newStock = Stock(null, "TEMP", BigDecimal.ZERO, 1, "descr", true)
 val defaultStock = newStock.copy(id = "temp")
 
 val binaryDoc: epam.contest.stock.Stock by lazy {

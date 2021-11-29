@@ -15,7 +15,7 @@ abstract class FlatbuffersCodecSupport {
     }
 
     protected open fun supportsMimeType(@Nullable mimeType: MimeType?): Boolean =
-         mimeType == null || MIME_TYPES.any { m: MimeType -> m.isCompatibleWith(mimeType) }
+        mimeType == null || MIME_TYPES.any { m: MimeType -> m.isCompatibleWith(mimeType) }
 
     protected open fun getMimeTypes(): List<MimeType> = MIME_TYPES
 }

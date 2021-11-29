@@ -8,8 +8,6 @@ phantom:
   writelog: all
   ssl: false
   connection_test: true
-  # uris:
-  #   - "/document/v1/stock/" 
 overload:
   enabled: true
   package: yandextank.plugins.DataUploader

@@ -11,7 +11,7 @@ import org.springframework.util.MimeType
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-class FlatbufferDecoder: FlatbuffersCodecSupport(), Decoder<Table> {
+class FlatbufferDecoder : FlatbuffersCodecSupport(), Decoder<Table> {
 
     private val maxMessageSize = DEFAULT_MESSAGE_MAX_SIZE
 
@@ -41,13 +41,7 @@ class FlatbufferDecoder: FlatbuffersCodecSupport(), Decoder<Table> {
         targetType: ResolvableType,
         mimeType: MimeType?,
         hints: MutableMap<String, Any>?
-    ): Table {
-        val bytes = ByteArray(buffer.readableByteCount())
-        buffer.read(bytes)
-        DataBufferUtils.release(buffer)
-        val buff = java.nio.ByteBuffer.wrap(bytes)
-        return Stock.getRootAsStock(buff)
-    }
+    ): Table = Stock.getRootAsStock(buffer.asByteBuffer())
 
     override fun getDecodableMimeTypes(): MutableList<MimeType> = MIME_TYPES
 }
