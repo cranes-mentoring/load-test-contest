@@ -1,0 +1,16 @@
+###
+POST http://localhost:8081/document/v1/stocks
+Content-Type: application/json
+
+{
+  "name": "APLL",
+  "price": "10.98",
+  "amount": 30,
+  "description": "APL",
+  "status": true
+}
+
+
+###
+GET http://localhost:8081/document/v1/stocks/0/10
+Content-Type: application/json

@@ -20,33 +20,33 @@ services:
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
 
-  fbservice:
-    image: flatbuffer-document-service
-    restart: on-failure
-    depends_on:
-      - mongo
-    ports:
-      - "9002:9002"
-    environment:
-      - SERVER_PORT=9002
-      - SPRING_DATA_MONGODB_HOST=mongo
-      - SPRING_DATA_MONGODB_PORT=27017
-    networks:
-      - main-network    
-
-  docservice:
-    image: document-service
-    restart: on-failure
-    depends_on:
-      - mongo
-    ports:
-      - "9001:9001"
-    environment:
-      - SERVER_PORT=9001
-      - SPRING_DATA_MONGODB_HOST=mongo
-      - SPRING_DATA_MONGODB_PORT=27017
-    networks:
-      - main-network  
+#  fbservice:
+#    image: flatbuffer-document-service
+#    restart: on-failure
+#    depends_on:
+#      - mongo
+#    ports:
+#      - "9002:9002"
+#    environment:
+#      - SERVER_PORT=9002
+#      - SPRING_DATA_MONGODB_HOST=mongo
+#      - SPRING_DATA_MONGODB_PORT=27017
+#    networks:
+#      - main-network
+#
+#  docservice:
+#    image: document-service
+#    restart: on-failure
+#    depends_on:
+#      - mongo
+#    ports:
+#      - "9001:9001"
+#    environment:
+#      - SERVER_PORT=9001
+#      - SPRING_DATA_MONGODB_HOST=mongo
+#      - SPRING_DATA_MONGODB_PORT=27017
+#    networks:
+#      - main-network
 
 networks:
   main-network:
