@@ -1,30 +1,34 @@
 package com.ere.stockservice.config
 
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
+import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.ApplicationContextInitializer
-import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.support.TestPropertySourceUtils
+import org.springframework.test.context.DynamicPropertyRegistry
+import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.MongoDBContainer
+import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy
+import org.testcontainers.junit.jupiter.Testcontainers
+import org.testcontainers.utility.DockerImageName
 
-
-@ContextConfiguration(initializers = [IntegrationTest::class])
+@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class IntegrationTest: ApplicationContextInitializer<ConfigurableApplicationContext> {
+abstract class IntegrationTest {
 
-    private val mongo = MongoDBContainer("mongo:4.0.10")
+    companion object {
+        @JvmStatic
+        private val mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:4.0.10"))
+            .waitingFor(HostPortWaitStrategy())
 
-    init {
-        mongo.start()
+        @BeforeAll
+        @JvmStatic
+        fun beforeAll() {
+            mongoDBContainer.start()
+        }
+
+        @JvmStatic
+        @DynamicPropertySource
+        fun registerDynamicProperties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
+            registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
+        }
     }
-
-    override fun initialize(applicationContext: ConfigurableApplicationContext) {
-        TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
-            applicationContext,
-            "spring.data.mongodb.uri=" + mongo.replicaSetUrl
-        )
-    }
-
 }

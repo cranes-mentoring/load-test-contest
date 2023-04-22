@@ -10,7 +10,6 @@ Content-Type: application/json
   "status": true
 }
 
-
 ###
 GET http://localhost:8081/document/v1/stocks/0/10
 Content-Type: application/json

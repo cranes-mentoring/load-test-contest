@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property scope="context" name="app.name" value="${SERVICE_NAME}"/>
-    <property scope="context" name="pod.name" value="${HOSTNAME}"/>
+    <property scope="context" name="app.name" value="${SERVICE_NAME:spring-service}"/>
+    <property scope="context" name="pod.name" value="${HOSTNAME:localhost}"/>
     <property scope="context" name="root.level" value="${ROOT_LEVEL:-INFO}"/>
     <property scope="context" name="console.log.pattern"
               value="${CONSOLE_LOG_PATTERN:-%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n}"/>

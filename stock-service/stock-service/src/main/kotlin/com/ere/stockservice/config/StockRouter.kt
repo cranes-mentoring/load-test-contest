@@ -18,10 +18,10 @@ class StockRouter(
             main.nest {
                 contentType(APPLICATION_JSON).nest {
                     POST("", stockHandler::save)
+                }
 
-                    findAll.nest {
-                        GET("", stockHandler::findAll)
-                    }
+                findAll.nest {
+                    GET("", stockHandler::findAll)
                 }
             }
         }
