@@ -1,1 +1,0 @@
-cd .. && ./gradlew bootBuildImage --imageName=ere/stock-service

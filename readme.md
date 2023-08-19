@@ -64,3 +64,9 @@ Python script which can create ammo (json or flatbuffers) for tank. Used simple 
 
 
 ---
+
+
+useful:
+
+run postgres:
+https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
