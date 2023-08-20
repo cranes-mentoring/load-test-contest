@@ -1,54 +1,25 @@
+# Use postgres/example user/password credentials
 version: '3.1'
 
 services:
-  mongo:
-    image: mongo
-    hostname: mongo
-    restart: unless-stopped
-    ports:
-      - 27017:27017
-    networks:
-      - main-network
 
-  mongo-express:
-    image: mongo-express
-    # restart: always
+  db:
+    image: postgres
+    container_name: postgres-stocks
     ports:
-      - "8081:8081"
-    networks:
-      - main-network
+      - "5432:5432"
     environment:
-      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+      POSTGRES_PASSWORD: postgres
 
-#  fbservice:
-#    image: flatbuffer-document-service
-#    restart: on-failure
-#    depends_on:
-#      - mongo
-#    ports:
-#      - "9002:9002"
-#    environment:
-#      - SERVER_PORT=9002
-#      - SPRING_DATA_MONGODB_HOST=mongo
-#      - SPRING_DATA_MONGODB_PORT=27017
-#    networks:
-#      - main-network
-#
-#  docservice:
-#    image: document-service
-#    restart: on-failure
-#    depends_on:
-#      - mongo
-#    ports:
-#      - "9001:9001"
-#    environment:
-#      - SERVER_PORT=9001
-#      - SPRING_DATA_MONGODB_HOST=mongo
-#      - SPRING_DATA_MONGODB_PORT=27017
-#    networks:
-#      - main-network
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
 
-networks:
-  main-network:
-    external:
-      name: CONTEST_NETWORK
+  stock-service:
+    image: ere/stock-service
+    container_name: stock-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - db

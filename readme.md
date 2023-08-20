@@ -70,3 +70,7 @@ useful:
 
 run postgres:
 https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
+
+build gradle and docker:
+https://spring.io/guides/topicals/spring-boot-docker/
+

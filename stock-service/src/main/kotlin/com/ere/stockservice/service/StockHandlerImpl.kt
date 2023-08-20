@@ -5,7 +5,6 @@ import com.ere.stockservice.port.StockHandler
 import com.ere.stockservice.port.StockService
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.reactor.awaitSingle
-import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -51,8 +50,6 @@ class StockHandlerImpl(
                 .awaitSingle()
 
         }
-
-
     }
 
     override suspend fun save(req: ServerRequest): ServerResponse {

@@ -39,13 +39,14 @@ def generate_json():
         "price": 1,
         "description": "description"
     }
-    url = "/document/v1/stock/"
+    url = "/api/v1/stock"
     h = headers + "Content-type: application/json"
     s1 = json.dumps(body)
     ammo = make_ammo(method, url, h, case, s1)
     sys.stdout.write(ammo)
     f2 = open("ammo/ammo-json.txt", "w")
     f2.write(ammo)
+
 
 if __name__ == "__main__":
     generate_json()

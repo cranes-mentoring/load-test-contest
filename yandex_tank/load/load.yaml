@@ -1,21 +1,20 @@
 phantom:
-  address: localhost:9002
+  address: localhost
+  port: "8085"
   ammo_type: phantom
-  ammofile: ammo-binary.txt
+  ammofile: ammo-json.txt
   load_profile:
     load_type: rps
     schedule: line(100, 250, 1m)
   writelog: all
   ssl: false
   connection_test: true
-  # uris:
-  #   - "/document/v1/stock/" 
 overload:
-  enabled: true
+  enabled: false
   package: yandextank.plugins.DataUploader
-  token_file: "env/token.txt" 
+  token_file: "env/token.txt"
 telegraf:
-  enabled: false  
+  enabled: false
 autostop:
   autostop:
     - time(1s,10s) # if request average > 1s

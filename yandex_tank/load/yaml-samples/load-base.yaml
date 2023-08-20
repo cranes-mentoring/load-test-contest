@@ -1,5 +1,5 @@
 phantom:
-  address: localhost:9001
+  address: stock-service:8085
   load_profile:
     load_type: rps
     schedule: line(100, 250, 30s)
