@@ -20,7 +20,7 @@ func NewStockGRPCService(emailUC stock.UseCase) *Server {
 }
 
 func (e *Server) Save(ctx context.Context, request *stocks.SaveRequest) (*stocks.SaveResponse, error) {
-	model := request.Stocks
+	model := request.Stock
 
 	stockDto := &models.Stock{
 		ID:          nil,

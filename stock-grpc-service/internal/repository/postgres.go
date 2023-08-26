@@ -33,7 +33,7 @@ func (e *PGRepository) Create(ctx context.Context, stock *models.Stock) (*models
 		&stock.Name,
 		&stock.Price,
 		&stock.Description,
-	).Scan(&stock.Name, &stock.Price, &stock.Description); err != nil {
+	).Scan(&stock.ID, &stock.Name, &stock.Price, &stock.Description); err != nil {
 		return nil, errors.Wrap(err, "Scan")
 	}
 
