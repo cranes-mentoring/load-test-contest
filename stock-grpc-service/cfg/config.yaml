@@ -1,0 +1,16 @@
+AppVersion: 1.0.0
+
+GRPC:
+  Port: ":5007"
+  MaxConnectionIdle: 5
+  Timeout: 15
+  MaxConnectionAge: 5
+
+PostgreSQL:
+  PostgresqlHost: localhost
+  PostgresqlPort: 5432
+  PostgresqlUser: postgres
+  PostgresqlPassword: postgres
+  PostgresqlDBName: postgres
+  PostgresqlSslmode: "disable"
+  PgDriver: pgx

@@ -1,0 +1,13 @@
+###
+POST http://localhost:8085/api/v1/stock
+Content-Type: application/json
+
+{
+  "name": "APLL",
+  "price": "10.98",
+  "description": "APL"
+}
+
+###
+GET http://localhost:8085/api/v1/stock?name=ee077b20-ecab-4a62-87fc-360edca80c2f
+Content-Type: application/json
