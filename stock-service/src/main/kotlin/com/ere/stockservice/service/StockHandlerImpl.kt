@@ -21,7 +21,7 @@ class StockHandlerImpl(
 
     private companion object {
         const val DEFAULT_SIZE = 10
-        const val NAME_PARAM = "name"
+        const val NAME_PARAM = "symbol"
     }
 
     override suspend fun findAll(req: ServerRequest): ServerResponse {

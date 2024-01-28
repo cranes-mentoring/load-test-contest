@@ -7,7 +7,7 @@ import java.math.BigDecimal
 @Table("stocks")
 data class Stock(
     @field:Id val id: Long?,
-    val name: String,
+    val symbol: String,
     val price: BigDecimal,
     val description: String
 )

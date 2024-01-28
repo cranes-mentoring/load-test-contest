@@ -1,15 +1,19 @@
 phantom:
-  address: stock-service:8085
+  address: "localhost"
+  port: "80"
   load_profile:
     load_type: rps
-    schedule: line(100, 250, 30s)
+    schedule: const(500, 60s)
   writelog: all
   ssl: false
   connection_test: true
   uris:
-    - "/document/v1/stock/" 
+    - "/api/v1/stocks"
 overload:
-  enabled: false
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  job_name: "find stocks"
+  token_file: "env/token.txt"
 telegraf:
   enabled: false  
 autostop:

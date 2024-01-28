@@ -1,13 +1,16 @@
 ###
-POST http://localhost:8085/api/v1/stock
+POST http://localhost:8081/api/v1/stock
 Content-Type: application/json
 
 {
-  "name": "APLL",
+  "name": "TEST",
   "price": "10.98",
   "description": "APL"
 }
 
-###
-GET http://localhost:8085/api/v1/stock?name=ee077b20-ecab-4a62-87fc-360edca80c2f
+### find by symbol
+GET http://localhost:8081/api/v1/stock?symbol=TEST
 Content-Type: application/json
+
+### find all
+GET  http://localhost:8081/api/v1/stocks

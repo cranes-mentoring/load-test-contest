@@ -1,0 +1,36 @@
+router:
+  main: /api/v1
+  find: /stock
+  find-all: /stocks
+  save: /stock
+
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+  liquibase:
+    enabled: true
+    change-log: liquidbase/changelog-master.yaml
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: postgres
+    user: postgres
+    driver-class-name: org.postgresql.Driver
+
+  main:
+    banner-mode: off
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT}
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

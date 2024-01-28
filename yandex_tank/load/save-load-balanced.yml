@@ -1,17 +1,18 @@
 phantom:
-  address: localhost
-  port: "8085"
+  address: "localhost"
+  port: "80"
   ammo_type: phantom
   ammofile: ammo-json.txt
   load_profile:
     load_type: rps
-    schedule: line(100, 250, 1m)
+    schedule: const(1000, 3m)
   writelog: all
   ssl: false
   connection_test: true
 overload:
-  enabled: false
+  enabled: true
   package: yandextank.plugins.DataUploader
+  job_name: "save stocks"
   token_file: "env/token.txt"
 telegraf:
   enabled: false

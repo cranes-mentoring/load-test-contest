@@ -7,10 +7,8 @@ import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 
 interface StockRepository: CoroutineCrudRepository<Stock, Long> {
 
-    @Query("""
-        select * from stocks limit :limit
-    """)
+    @Query("""select * from stocks limit :limit""")
     fun findAllByLimit(limit: Int): Flow<Stock>
 
-    fun findAllByName(name: String): Flow<Stock>
+    fun findAllBySymbol(symbol: String): Flow<Stock>
 }
