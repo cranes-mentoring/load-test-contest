@@ -3,7 +3,7 @@ phantom:
   port: "80"
   load_profile:
     load_type: rps
-    schedule: const(500, 60s)
+    schedule: const(1500, 60s)
   writelog: all
   ssl: false
   connection_test: true

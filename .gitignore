@@ -1,5 +1,4 @@
 ./idea
 ./build
 ./yandex-tank-load-test/token.txt
-./document-service/.gradle
-./flatbuffer-document-service/.gradle
+./stock-service/.gradle
