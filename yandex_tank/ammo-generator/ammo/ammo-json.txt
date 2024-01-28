@@ -1,0 +1,10 @@
+212 
+POST /api/v1/stock HTTP/1.1
+Host: test.com
+User-Agent: tank
+Accept: */*
+Connection: Close
+Content-type: application/json
+Content-Length: 61
+
+{"name": "content", "price": 1, "description": "description"}

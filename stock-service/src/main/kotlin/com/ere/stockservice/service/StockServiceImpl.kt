@@ -20,6 +20,6 @@ class StockServiceImpl(
     override suspend fun save(stock: StockDto): StockDto =
         stockRepository.save(stock.toEntity()).toDto()
 
-    override suspend fun find(name: String): Flow<StockDto> =
-        stockRepository.findAllByName(name).map { it.toDto() }
+    override suspend fun find(symbol: String): Flow<StockDto> =
+        stockRepository.findAllBySymbol(symbol).map { it.toDto() }
 }

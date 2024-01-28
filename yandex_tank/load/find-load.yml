@@ -1,17 +1,19 @@
 phantom:
-  address: localhost:9001
-  ammo_type: phantom
-  ammofile: ammo-json.txt
+  address: "localhost"
+  port: "8085"
   load_profile:
     load_type: rps
-    schedule: line(100, 250, 1m)
+    schedule: const(500, 60s)
   writelog: all
   ssl: false
   connection_test: true
+  uris:
+    - "/api/v1/stocks"
 overload:
   enabled: true
   package: yandextank.plugins.DataUploader
-  token_file: "env/token.txt" 
+  job_name: "find stocks"
+  token_file: "env/token.txt"
 telegraf:
   enabled: false  
 autostop:

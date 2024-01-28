@@ -1,5 +1,5 @@
 ## Load test with Yandex tank and ghz
-### version 2.0.0
+### version 3.1.0
 
 ### It's a simple example, I highly recommend refactoring this example for using in production aria.
 
