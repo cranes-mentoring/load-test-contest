@@ -5,7 +5,7 @@ phantom:
   ammofile: ammo-json.txt
   load_profile:
     load_type: rps
-    schedule: const(1000, 3m)
+    schedule: const(1500, 1m)
   writelog: all
   ssl: false
   connection_test: true

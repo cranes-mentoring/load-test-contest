@@ -106,12 +106,17 @@
             "type": "prometheus",
             "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "rate(http_server_requests_seconds_count{outcome=\"SUCCESS\", uri=\"/api/v1/stocks\"}[$__rate_interval])",
+          "expr": "rate(http_server_requests_seconds_count{outcome=\"SUCCESS\", uri!=\"/actuator/prometheus\"}[$__rate_interval])",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "count 200",
@@ -203,7 +208,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(http_server_requests_active_seconds_max{outcome=\"SUCCESS\"}) by (instance)",
+          "expr": "histogram_quantile(0.99,sum(rate(http_server_requests_seconds_bucket[1m])) by (le))\n",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -212,7 +217,7 @@
           "refId": "A"
         }
       ],
-      "title": "request active",
+      "title": "99",
       "type": "timeseries"
     },
     {
@@ -275,12 +280,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 9,
         "w": 8,
         "x": 16,
         "y": 0
       },
-      "id": 5,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [],
@@ -300,41 +305,17 @@
             "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
           },
           "editorMode": "code",
-          "expr": "rate(r2dbc_pool_acquired_connections[1m])",
-          "hide": false,
+          "exemplar": false,
+          "expr": "histogram_quantile(0.95,sum(rate(http_server_requests_seconds_bucket[1m])) by (le))",
+          "format": "heatmap",
           "instant": false,
+          "interval": "",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
-          },
-          "editorMode": "code",
-          "expr": "sum(r2dbc_pool_acquired_connections) by (instance)",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
-          },
-          "editorMode": "code",
-          "expr": "sum(r2dbc_pool_idle_connections) by (instance)",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "C"
         }
       ],
-      "title": "r2dbc pending",
+      "title": "95",
       "type": "timeseries"
     },
     {
@@ -606,6 +587,128 @@
       "yaxis": {
         "align": false
       }
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 16,
+        "y": 9
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "editorMode": "code",
+          "expr": "rate(r2dbc_pool_acquired_connections[1m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "editorMode": "code",
+          "expr": "sum(r2dbc_pool_acquired_connections) by (instance)",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "editorMode": "code",
+          "expr": "sum(r2dbc_pool_idle_connections) by (instance)",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "r2dbc pending",
+      "type": "timeseries"
     }
   ],
   "refresh": "10s",
@@ -615,13 +718,13 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "test",
   "uid": "c4df61f0-b1ad-4b49-adf6-4cf2d65c37ef",
-  "version": 11,
+  "version": 16,
   "weekStart": ""
 }
