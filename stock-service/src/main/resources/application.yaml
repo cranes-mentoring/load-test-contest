@@ -5,7 +5,7 @@ router:
   save: /stock
 
 server:
-  port: ${SERVER_PORT}
+  port: ${SERVER_PORT:7008}
 
 spring:
   r2dbc:
@@ -26,7 +26,7 @@ spring:
 
 management:
   server:
-    port: ${MANAGEMENT_PORT}
+    port: ${MANAGEMENT_PORT:7084}
   endpoint:
     prometheus:
       enabled: true
@@ -34,3 +34,9 @@ management:
     web:
       exposure:
         include: '*'
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true

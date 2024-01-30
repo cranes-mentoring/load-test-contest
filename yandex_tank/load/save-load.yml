@@ -1,11 +1,11 @@
 phantom:
   address: "localhost"
-  port: "80"
+  port: "8085"
   ammo_type: phantom
   ammofile: ammo-json.txt
   load_profile:
     load_type: rps
-    schedule: const(500, 1m)
+    schedule: const(1500, 1m)
   writelog: all
   ssl: false
   connection_test: true
