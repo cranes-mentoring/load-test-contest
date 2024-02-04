@@ -208,7 +208,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99,sum(rate(http_server_requests_seconds_bucket[1m])) by (le))\n",
+          "expr": "histogram_quantile(0.99,sum(rate(http_server_requests_seconds_bucket{uri='/api/v1/stocks'}[1m])) by (le))\n",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -306,7 +306,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95,sum(rate(http_server_requests_seconds_bucket[1m])) by (le))",
+          "expr": "histogram_quantile(0.95,sum(rate(http_server_requests_seconds_bucket{uri='/api/v1/stocks'}[1m])) by (le))",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -711,20 +711,20 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
+  "refresh": false,
   "schemaVersion": 38,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2024-02-04T21:25:58.181Z",
+    "to": "2024-02-04T21:28:48.227Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "test",
   "uid": "c4df61f0-b1ad-4b49-adf6-4cf2d65c37ef",
-  "version": 16,
+  "version": 18,
   "weekStart": ""
 }
