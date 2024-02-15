@@ -2,3 +2,5 @@
 ./build
 ./yandex-tank-load-test/token.txt
 ./stock-service/.gradle
+./yandex-tank/load/env/token.txt
+yandex_tank/load/env/token.txt

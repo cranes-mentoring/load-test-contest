@@ -173,7 +173,7 @@
                 "value": null
               },
               {
-                "color": "red",
+                "color": "semi-dark-red",
                 "value": 80
               }
             ]
@@ -191,8 +191,8 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
+          "displayMode": "table",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -206,15 +206,59 @@
             "type": "prometheus",
             "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
           },
-          "editorMode": "code",
+          "disableTextWrap": false,
+          "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99,sum(rate(http_server_requests_seconds_bucket{uri='/api/v1/stocks'}[1m])) by (le))\n",
+          "expr": "histogram_quantile(0.99, sum by(le) (rate(http_server_requests_seconds_bucket{uri=\"/api/v1/stock\", method=\"POST\"}[1m])))",
           "format": "heatmap",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "interval": "",
-          "legendFormat": "__auto",
+          "legendFormat": "POST /stock",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "histogram_quantile(0.99, sum by(le) (rate(http_server_requests_seconds_bucket{uri=\"/api/v1/stocks\", method=\"GET\"}[1m])))",
+          "format": "heatmap",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "GET /stocks",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "histogram_quantile(0.99, sum by(le) (rate(http_server_requests_seconds_bucket{uri=\"/api/v1/stock\", method=\"GET\"}[1m])))",
+          "format": "heatmap",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "GET /stock",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
         }
       ],
       "title": "99",
@@ -289,8 +333,8 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
+          "displayMode": "table",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -304,15 +348,59 @@
             "type": "prometheus",
             "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
           },
-          "editorMode": "code",
+          "disableTextWrap": false,
+          "editorMode": "builder",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95,sum(rate(http_server_requests_seconds_bucket{uri='/api/v1/stocks'}[1m])) by (le))",
+          "expr": "histogram_quantile(0.95, sum by(le) (rate(http_server_requests_seconds_bucket{uri=\"/api/v1/stock\", method=\"POST\"}[1m])))",
           "format": "heatmap",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "interval": "",
-          "legendFormat": "__auto",
+          "legendFormat": "POST /stock",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "histogram_quantile(0.95, sum by(le) (rate(http_server_requests_seconds_bucket{uri=\"/api/v1/stocks\", method=\"GET\"}[1m])))",
+          "format": "heatmap",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "GET /stocks",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cf072874-3bd4-4f41-b868-a803a22ff4ad"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "histogram_quantile(0.95, sum by(le) (rate(http_server_requests_seconds_bucket{uri=\"/api/v1/stock\", method=\"GET\"}[1m])))",
+          "format": "heatmap",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "GET /stock",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
         }
       ],
       "title": "95",
@@ -711,20 +799,20 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2024-02-04T21:25:58.181Z",
-    "to": "2024-02-04T21:28:48.227Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "test",
   "uid": "c4df61f0-b1ad-4b49-adf6-4cf2d65c37ef",
-  "version": 18,
+  "version": 21,
   "weekStart": ""
 }
