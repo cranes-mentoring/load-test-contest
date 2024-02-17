@@ -10,7 +10,7 @@ What do we need to install:
 
 --- 
 
-## Yandex tank
+# Yandex tank
 
 Read more about:
 [ya docs link](https://yandextank.readthedocs.io/en/latest/)
@@ -43,8 +43,17 @@ autostop: # autostop rule can help us to stop the test if we have problems
     - net(xx,25,10) # if amount of non-zero net-codes in every second of last 10s period is more than 25 
 ```
 2. _env_ for token, we can find it here: https://overload.yandex.net
+<img src="img/overload.png" width="600" height="400">
 
-3. ammo generator
+3. _run_ test with sh script
+
+I added runners for all cases. We can choose best one.  
+_-...load_ -> to 8085  
+_-...balancer_ -> to nginx
+
+<img src="img/console.png" width="700" height="200">
+
+4. ammo generator
 Python script which can create ammo for tank. Used simple generator, like here: [ammo generator example Yandex Tank docs](https://yandextank.readthedocs.io/en/latest/ammo_generators.html)
 ```python
 # code: 
@@ -62,46 +71,33 @@ def generate_json(): # I just use simple case ;D
     f2 = open("ammo/ammo-json.txt", "w")
     f2.write(ammo)
 ```
-4. runners
-I added runners for all cases. We can choose best one.  
--...load -> to 8085  
--...balancer -> to nginx
+We can generate ammo file:
+```text
+212 
+POST /api/v1/stock HTTP/1.1
+Host: test.com
+User-Agent: tank
+Accept: */*
+Connection: Close
+Content-type: application/json
+Content-Length: 61
 
-### Extra
+{"name": "content", "price": 1, "description": "description"}
+
+```
+We shouldn't add anything here, because we generated it.
 
 
-
-
-
-
-
-
-
-
-Read more about:
- [ya link](https://yandextank.readthedocs.io/en/latest/)
-
-If you cannot use Docker check more information about  settings here: [download and install](https://yandextank.readthedocs.io/en/latest/install.html#installation-from-pypi)
-
-### Yandex tank
-folder has:
-> ammo-json.txt -> json ammo  
-> load.yaml -> main file.  
-> tank.sh -> run with docker  
-How can you change it or overwrite? First, read documentation here [Yandex load file docs](https://yandextank.readthedocs.io/en/latest/tutorial.html) 
-
+Read more:  
+Yandex tank [ya link](https://yandextank.readthedocs.io/en/latest/)  
+If you cannot use Docker check more information about settings here: [download and install](https://yandextank.readthedocs.io/en/latest/install.html#installation-from-pypi)  
+How can you change it or overwrite? First, read documentation here [Yandex load file docs](https://yandextank.readthedocs.io/en/latest/tutorial.html)  
 Use as standalone [install with pip3](https://yandextank.readthedocs.io/en/latest/install.html#installation-from-pypi)  
+Yaml settings: [here](https://yandextank.readthedocs.io/en/latest/core_and_modules.html#load-generators)  
+Jmeter [here](https://gist.github.com/sameoldmadness/9abeef4c2125bc760ba2f09ee1150330)  
 
-Yaml settings:
-[here](https://yandextank.readthedocs.io/en/latest/core_and_modules.html#load-generators)  
-
-Jmeter
-[here](https://gist.github.com/sameoldmadness/9abeef4c2125bc760ba2f09ee1150330)  
-
-### `ammo-generator`  
-Python script which can create ammo for tank. Used simple generator, like here: [ammo generator example Yandex Tank docs](https://yandextank.readthedocs.io/en/latest/ammo_generators.html)
-
-### ghz
+---
+# ghz
 Read more here: [ghz](https://ghz.sh)  
 
 just install it [docs](https://ghz.sh/docs/install)
@@ -121,3 +117,28 @@ ghz --insecure \
   --connections=10 \
   0.0.0.0:5007
 ```
+
+---
+# Services
+
+Stock-service has prometheus and actuator, we can use it for integration with grafana.  
+example: http://localhost:8084/actuator/prometheus
+
+```yaml
+global:
+  scrape_interval:     5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: stock-service-1
+    metrics_path: /actuator/prometheus # http://localhost:8084/actuator/prometheus
+    static_configs:
+      - targets: ['stock-service-1:8084']
+```
+
+Grafana board folder has a board.json file, we can use for visualisation.  
+Example:  
+<img src="img/grafana.png" width="700" height="200">
