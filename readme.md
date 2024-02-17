@@ -4,9 +4,79 @@
 ### It's a simple example, I highly recommend refactoring this example for using in production aria.
 
 What do we need to install:
-1. docker compose 
+1. docker desktop 
 2. python for yandex tank
 3. ghz
+
+--- 
+
+## Yandex tank
+
+Read more about:
+[ya docs link](https://yandextank.readthedocs.io/en/latest/)
+
+Go to the folder:
+```shell
+cd yandex_tank
+```
+
+### load folder
+1. _demo_ has a simple example for basic configuration
+```yaml
+phantom: # base engine
+  address: "localhost" # our address
+  port: "8085" # port for service
+  load_profile: # part of config which responsible for load process
+    load_type: rps 
+    schedule: const(1500, 60s) # we can change the type, ex: rate, const
+  writelog: all # for all logs
+  ssl: false # if we have localhost we don't need ssl
+  uris: # for get request we can use just the sections below
+    - "/api/v1/stocks"
+telegraf: # extra monitoring
+  enabled: false
+autostop: # autostop rule can help us to stop the test if we have problems
+  autostop:
+    - time(500ms,1s) # if request average > 1s
+    - http(5xx,3%,1s) # if 500 errors > 1s
+    - http(4xx,3%,1s) # if 400 > 3%
+    - net(xx,25,10) # if amount of non-zero net-codes in every second of last 10s period is more than 25 
+```
+2. _env_ for token, we can find it here: https://overload.yandex.net
+
+3. ammo generator
+Python script which can create ammo for tank. Used simple generator, like here: [ammo generator example Yandex Tank docs](https://yandextank.readthedocs.io/en/latest/ammo_generators.html)
+```python
+# code: 
+def generate_json(): # I just use simple case ;D
+    body = { 
+        "name": "content",
+        "price": 1,
+        "description": "description"
+    }
+    url = "/api/v1/stock"
+    h = headers + "Content-type: application/json"
+    s1 = json.dumps(body)
+    ammo = make_ammo(method, url, h, case, s1)
+    sys.stdout.write(ammo)
+    f2 = open("ammo/ammo-json.txt", "w")
+    f2.write(ammo)
+```
+4. runners
+I added runners for all cases. We can choose best one.  
+-...load -> to 8085  
+-...balancer -> to nginx
+
+### Extra
+
+
+
+
+
+
+
+
+
 
 Read more about:
  [ya link](https://yandextank.readthedocs.io/en/latest/)
