@@ -21,4 +21,3 @@ autostop:
     - time(1s,1s) # if request average > 1s
     - http(5xx,3%,1s) # if 500 errors > 1s
     - http(4xx,3%,1s) # if 400 > 25%
-    - net(xx,25,10) # if amount of non-zero net-codes in every second of last 10s period is more than 25 

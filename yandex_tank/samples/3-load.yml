@@ -1,6 +1,6 @@
 phantom:
   address: "localhost"
-  port: "80"
+  port: "8085"
   load_profile:
     load_type: rps
     schedule: const(1500, 60s)
@@ -15,9 +15,9 @@ overload:
   job_name: "find stocks"
   token_file: "env/token.txt"
 telegraf:
-  enabled: false  
+  enabled: false
 autostop:
   autostop:
-    - time(1s,10s) # if request average > 1s
-    - http(5xx,100%,1s) # if 500 errors > 1s
-    - http(4xx,25%,10s) # if 400 > 25%
+    - time(500ms,1s) # if request average > 1s
+    - http(5xx,3%,1s) # if 500 errors > 1s
+    - http(4xx,3%,1s) # if 400 > 25%
