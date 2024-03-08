@@ -6,18 +6,12 @@ phantom:
     schedule: const(1500, 60s)
   writelog: all
   ssl: false
-  connection_test: true
   uris:
     - "/api/v1/stocks"
-overload:
-  enabled: true
-  package: yandextank.plugins.DataUploader
-  job_name: "find stocks"
-  token_file: "env/token.txt"
 telegraf:
   enabled: false
 autostop:
   autostop:
     - time(500ms,1s) # if request average > 1s
     - http(5xx,3%,1s) # if 500 errors > 1s
-    - http(4xx,3%,1s) # if 400 > 25%
+    - http(4xx,3%,1s) # if 400 > 3%

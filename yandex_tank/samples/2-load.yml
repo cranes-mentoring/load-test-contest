@@ -9,13 +9,6 @@ phantom:
   connection_test: true
   uris:
     - "/api/v1/stocks"
-overload:
-  enabled: true
-  package: yandextank.plugins.DataUploader
-  job_name: "find stocks"
-  token_file: "env/token.txt"
-telegraf:
-  enabled: false
 autostop:
   autostop:
     - time(500ms,1s) # if request average > 1s
