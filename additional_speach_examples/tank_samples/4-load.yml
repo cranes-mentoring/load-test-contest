@@ -1,0 +1,23 @@
+phantom:
+  address: "localhost"
+  port: "8085"
+  ammo_type: phantom
+  ammofile: ammo-json.txt
+  load_profile:
+    load_type: rps
+    schedule: const(1500, 1m)
+  writelog: all
+  ssl: false
+  connection_test: true
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  job_name: "save stocks"
+  token_file: "env/token.txt"
+telegraf:
+  enabled: false
+autostop:
+  autostop:
+    - time(1s,1s) # if request average > 1s
+    - http(5xx,3%,1s) # if 500 errors > 1s
+    - http(4xx,3%,1s) # if 400 > 25%

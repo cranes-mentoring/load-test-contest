@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-service-1
+spec:
+  selector:
+    matchLabels:
+      app: stock-service-1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: stock-service-1
+    spec:
+      containers:
+        - name: stock-service
+          image: ere/stock-service
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "stg"
+            - name: SERVER_PORT
+              value: "8085"
+          ports:
+            - containerPort: 8085
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stock-service-1
+spec:
+  type: NodePort
+  ports:
+    - port: 8085
+      nodePort: 30002
+  selector:
+    app: stock-service-1

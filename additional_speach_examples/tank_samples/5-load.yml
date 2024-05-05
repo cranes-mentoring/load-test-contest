@@ -1,0 +1,32 @@
+phantom:
+  address: "localhost"
+  port: "8085"
+  load_profile:
+    load_type: rps
+    schedule: const(1500, 60s)
+  writelog: all
+  ssl: false
+  connection_test: true
+  uris:
+    - "/api/v1/stock?symbol=APPL"
+    - "/api/v1/stock?symbol=AACG"
+    - "/api/v1/stock?symbol=ACONW"
+    - "/api/v1/stock?symbol=ADNWW"
+    - "/api/v1/stock?symbol=NYCB"
+    - "/api/v1/stock?symbol=OABI"
+    - "/api/v1/stock?symbol=OCCIO"
+    - "/api/v1/stock?symbol=OCUP"
+    - "/api/v1/stock?symbol=OMCL"
+    - "/api/v1/stock?symbol=TLGYW"
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  job_name: "find one stock"
+  token_file: "env/token.txt"
+telegraf:
+  enabled: false
+autostop:
+  autostop:
+    - time(500ms,5s) # if request average > 1s
+    - http(5xx,3%,1s) # if 500 errors > 1s
+    - http(4xx,3%,1s) # if 400 > 25%
